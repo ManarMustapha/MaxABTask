@@ -2,6 +2,8 @@ package com.example.maxabtask.model
 
 import com.google.gson.annotations.SerializedName
 
+data class Results(@SerializedName("results") var users: List<User>)
+
 data class User(
     @SerializedName("picture") var picture: Picture,
     @SerializedName("gender") var gender: String,

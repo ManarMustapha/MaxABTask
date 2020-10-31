@@ -18,18 +18,11 @@ interface UserDao {
     fun addUsers(trips: List<UserEntity>)
 
     @Query("SELECT * FROM users LIMIT :pageSize OFFSET :offset")
-    fun fetchUsers(pageSize: Int, offset: Int): Observable<List<UserEntity>>
+    fun fetchUsers(pageSize: Int, offset: Int): Single<List<UserEntity>>
 
-    @Query("SELECT * FROM users LIMIT :pageSize OFFSET :offset")
-    fun loadMore(pageSize: Int, offset: Int): Single<List<UserEntity>>
-
-    @Query("SELECT * FROM users")
-    fun fetchUsers(): Observable<List<UserEntity>>
+    @Query("SELECT COUNT(*) FROM users")
+    fun getTotalCount(): Single<Int>
 
     @Query("DELETE FROM users")
     fun removeAllUsers()
-
-    @Query("SELECT COUNT(*) FROM users")
-    fun getTotalCount(): Observable<Int>
-
 }
